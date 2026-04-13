@@ -28,9 +28,8 @@ function buscarPokemon() {
             };
             pokemonName.textContent = datosPokemonActual.name;
             pokemonImage.src = datosPokemonActual.image;
-            pokemonImage.style.display = "inline";
-            saveFavoriteBtn.style
-
+            pokemonImage.classList.remove("d-none");
+            saveFavoriteBtn.classList.remove("d-none");
             console.log(datos);
         })
         .catch(function (error) {
@@ -49,15 +48,18 @@ saveFavoriteBtn.addEventListener('click', function () {
     favoritos.push({ //hace el push con el nombre y la imagen del pokemon actual
         nombre: datosPokemonActual.name,
         imagen: datosPokemonActual.image
+
     });
 
     localStorage.setItem('favoritos', JSON.stringify(favoritos)); //convierte el array en string y lo guarda en localStorage
     alert("Pokemon guardado en favoritos");
+    mostrarFavoritos();
 })
 
 function mostrarFavoritos() {
     const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
     favoritesList.innerHTML = "";
+
     favoritos.forEach(function (favorito) {
         const card = document.createElement("div");
         card.classList.add("col-md-4");
@@ -72,4 +74,5 @@ function mostrarFavoritos() {
         favoritesList.appendChild(card);
     });
 }
+mostrarFavoritos();
 

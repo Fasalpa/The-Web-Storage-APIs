@@ -1,0 +1,63 @@
+body {
+    background: #e9ecef; /* Un gris un poco más oscuro para que las tarjetas blancas resalten */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+ 
+/* Navbar con degradado estilo Pokedex */
+.navbar.bg-danger {
+    background: linear-gradient(90deg, #1f93b6 0%, #261392 100%) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Tarjeta principal de búsqueda */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+ 
+/* efecto para la imagen del pokemon principal*/
+#pokemonImage {
+    filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.1));
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+ 
+#pokemonImage:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+ 
+/* Estilo para las tarjetas de la lista de Favoritos */
+#favoritesList .card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px); /* Efecto de desenfoque de fondo */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    text-align: center;
+}
+ 
+#favoritesList .card:hover {
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-8px);
+}
+ 
+/* Personalización de los botones */
+.btn-danger {
+    background-color: #ff1f1f;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+ 
+.btn-outline-danger {
+    border-width: 2px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+ 
+/* Estilo del nombre del Pokemon */
+#pokemonName {
+    color: #000000;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}

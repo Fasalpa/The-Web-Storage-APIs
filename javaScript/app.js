@@ -11,12 +11,16 @@ let historialGuardados = document.getElementById("historialGuardados");
 let datosPokemonActual = null;
 
 function buscarPokemon() {
-
-    const nombre = pokemonInput.value.toLowerCase().trim();
-    const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
+  const nombre = pokemonInput.value.toLowerCase().trim();
+  const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
+  if (nombre === "") {
+    alert("No se ingresó el nombre de un Pokemón");
+    return;
+  }
 
   fetch(url)
-    .then(function (respuesta) { //aquí tenemos una promesa de que nos va a buscar algo.
+    .then(function (respuesta) {
+      //aquí tenemos una promesa de que nos va a buscar algo.
       return respuesta.json();
     })
     .then(function (datos) {
@@ -29,12 +33,13 @@ function buscarPokemon() {
       pokemonName.textContent = datosPokemonActual.name;
       pokemonImage.src = datosPokemonActual.image;
       pokemonImage.style.display = "inline";
-      saveFavoriteBtn.style
 
       console.log(datos);
+
+      saveFavoriteBtn.style.display = "inline-block";
     })
     .catch(function (error) {
-      alert("¡Error! Pokémon no encontrado");
+      alert(`¡Error! Pokémon no encontrado ${error.value}`);
     });
 }
 //aquí activamos el botón de buscar pokemón

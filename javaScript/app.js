@@ -1,4 +1,10 @@
-url = ""
+const pokemonInput = document.getElementById('pokemonInput');
+const searchBtn = document.getElementById('searchBtn');
+const pokemonImage = document.getElementById('pokemonImage');
+const pokemonName = document.getElementById('pokemonName');
+const saveFavoriteBtn = document.getElementById('saveFavoriteBtn');
+const favoritesList = document.getElementById('favoritesList');
+
 
 fetch(url) 
  .then(function(response) { 

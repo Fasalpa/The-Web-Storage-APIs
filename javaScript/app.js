@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+const pokemonInput = document.getElementById('pokemonInput');
+const searchBtn = document.getElementById('searchBtn');
+const pokemonImage = document.getElementById('pokemonImage');
+const pokemonName = document.getElementById('pokemonName');
+const saveFavoriteBtn = document.getElementById('saveFavoriteBtn');
+const favoritesList = document.getElementById('favoritesList');
+
+>>>>>>> d9275d0885659d43362bb952fb0e2c9275ce2504
 
 
 

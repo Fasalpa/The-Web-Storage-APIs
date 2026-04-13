@@ -1,41 +1,56 @@
-const pokemonInput = document.getElementById('pokemonInput');
-const searchBtn = document.getElementById('searchBtn');
-const pokemonImage = document.getElementById('pokemonImage');
-const pokemonName = document.getElementById('pokemonName');
-const saveFavoriteBtn = document.getElementById('saveFavoriteBtn');
-const favoritesList = document.getElementById('favoritesList');
+const pokemonInput = document.getElementById("pokemonInput");
+const searchBtn = document.getElementById("searchBtn");
+const pokemonImage = document.getElementById("pokemonImage");
+const pokemonName = document.getElementById("pokemonName");
+const saveFavoriteBtn = document.getElementById("saveFavoriteBtn");
+const favoritesList = document.getElementById("favoritesList");
 
-let pokemonActual = null;
+let historialGuardados = document.getElementById("historialGuardados");
 
-// Buscar pokemon
-searchBtn.addEventListener('click', function () {
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonInput.value.toLowerCase()}`;
+//aquí vamos a guardar el poke que mostramos en pntlla
+let datosPokemonActual = null;
+
+function buscarPokemon() {
+
+    const nombre = pokemonInput.value.toLowerCase().trim();
+    const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
 
     fetch(url)
-        .then(function (response) {
-            return response.json();
+        .then(function (respuesta) { //aquí tenemos una promesa de que nos va a buscar algo.
+            return respuesta.json();
         })
-        .then(function (data) {
-            pokemonActual = data;
-            pokemonImage.src = data.sprites.front_default;
-            pokemonName.textContent = data.name;
-            console.log(data);
+        .then(function (datos) {
+            //aquí llamamos al pokemon
+            datosPokemonActual = {
+                id: datos.id,
+                name: datos.name,
+                image: datos.sprites.front_default,
+            };
+            pokemonName.textContent = datosPokemonActual.name;
+            pokemonImage.src = datosPokemonActual.image;
+            pokemonImage.style.display = "inline";
+            saveFavoriteBtn.style
+
+            console.log(datos);
         })
         .catch(function (error) {
             alert("¡Error! Pokémon no encontrado");
         });
-})
+}
+//aquí activamos el botón de buscar pokemón
+searchBtn.addEventListener("click", buscarPokemon);
 
-// Local storage
+
+
+//guardar favoritos
 saveFavoriteBtn.addEventListener('click', function () {
-    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || []; //si no hay favoritos array vacio, obtiene y convierte el que viene como string en format json
 
-    favoritos.push({
-        nombre: pokemonActual.name,
-        imagen: pokemonActual.sprites.front_default
+    favoritos.push({ //hace el push con el nombre y la imagen del pokemon actual
+        nombre: datosPokemonActual.name,
+        imagen: datosPokemonActual.image
     });
 
-    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+    localStorage.setItem('favoritos', JSON.stringify(favoritos)); //convierte el array en string y lo guarda en localStorage
+    alert("Pokemon guardado en favoritos");
 })
-
-

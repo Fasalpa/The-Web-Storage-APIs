@@ -6,7 +6,13 @@
 
 
 
+
+
+
+
+
 let historialGuardados = document.getElementById("historialGuardados");
+
 
 url = "https://pokeapi.co/api/v2/pokemon/";
 
